@@ -201,9 +201,8 @@ class _SignUpState extends State<SignUp> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Forget password?',style: TextStyle(fontSize: 12.0),),
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text('Signup'),
-                      color: Color(0xffEE7B23),
                       onPressed: (){},
                     ),
                   ],
