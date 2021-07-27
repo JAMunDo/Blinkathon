@@ -1,9 +1,9 @@
 class User{
-  String name;
-  String email;
-  String uid;
-  int phoneNumber;
-  int balance;
+ late String name;
+ late String email;
+ late String uid;
+ late int phoneNumber;
+ late int balance;
 
   User(String name, String email, String uid, int phoneNumber, int balance);
 
