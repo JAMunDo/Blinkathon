@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Dashboard/Landing.dart';
 
@@ -11,6 +12,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
@@ -86,7 +89,8 @@ class _LoginState extends State<Login> {
               children: [
                 Text('Forget password?',style: TextStyle(fontSize: 15.0),),
                 ElevatedButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Landing()));
+                  login();
+
                 }, child: Text('Login'))
               ],
             ),
@@ -118,8 +122,21 @@ class _LoginState extends State<Login> {
     ),
     );
   }
+  Future<void> login() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: pwController.text.trim()
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Landing()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
 }
 
-void login(){
 
-}
