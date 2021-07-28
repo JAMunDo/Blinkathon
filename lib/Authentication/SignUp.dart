@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/Dashboard/Landing.dart';
 
 import '../main.dart';
+
+
 
 class SignUp extends StatefulWidget {
   @override
@@ -8,6 +13,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
@@ -50,6 +59,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 width:width* 0.95 ,
                 child: TextField(
+                  controller: nameController,
                   decoration: InputDecoration(
                     hintText: 'Name',
                     suffixIcon: Icon(Icons.drive_file_rename_outline),
@@ -67,6 +77,8 @@ class _SignUpState extends State<SignUp> {
               Container(
                 width:width* 0.95 ,
                 child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Email',
                     suffixIcon: Icon(Icons.email),
@@ -84,9 +96,31 @@ class _SignUpState extends State<SignUp> {
               Container(
                 width:width* 0.95 ,
                 child: TextField(
+                  keyboardType: TextInputType.text,
+                  controller: pwController,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Password',
+                    suffixIcon: Icon(Icons.visibility_off),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                    border:Border(
+                        bottom: BorderSide(
+                          width:0.3,
+                        )
+                    )
+                ),
+              ),
+              SizedBox(height: 20.0,),
+              Container(
+                width:width* 0.95 ,
+                child: TextField(
+                  keyboardType: TextInputType.phone,
+                  controller: phoneController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintText: 'Phone Number',
                     suffixIcon: Icon(Icons.visibility_off),
                   ),
                 ),
@@ -130,12 +164,52 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-
-
             ],
           ),
         ),
       ),
     );
+
+  }
+
+  signUp() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: pwController.text.trim()
+
+      );
+      saveUserInfoToFirestore(userCredential.user!).then((value) {
+        userCredential.user!.updateDisplayName(
+            nameController.text.trim());
+
+
+        Route route = MaterialPageRoute(builder: (c) => Landing());
+        Navigator.pushReplacement(context, route);
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> saveUserInfoToFirestore(User user) async {
+
+    await FirebaseFirestore.instance.collection("Users").doc(user.uid).set({
+      "uid": user.uid,
+      "email": emailController.text.trim(),
+      "Name": nameController.text.trim(),
+      "phoneNumber": phoneController.text.trim(),
+      "balance": 0,
+    });
+
   }
 }
+
+
+
