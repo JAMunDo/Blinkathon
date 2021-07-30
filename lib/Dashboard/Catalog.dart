@@ -45,18 +45,8 @@ class _CatalogState extends State<Catalog> {
 Future<CatCard> fetchPost() async {
   final String apiKey = "e110c41ec6bc4586809e232e8f558a73";
   final data = jsonEncode({
-    "gift": {
-      "action": "order",
-      "apikey": "5c80278bbd1a46b991e671a4056ec609",
-      "sender": "Romario.",
-      "from": "8768682192",
-      "dest": "8763927054",
-      "code": "218",
-      "amount": 25.50,
-      "postal": "30005",
-      "msg": "Thanks for taking our test drive!",
-      "reference": "7563834856",
-      "handle_delivery": false
+    "service": {
+      "apikey": apiKey
     }
   });
   final response =
