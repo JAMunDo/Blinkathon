@@ -27,6 +27,13 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.payments_sharp),
+            title: Text('Reload'),
+            onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Reload()))
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () => {
@@ -35,7 +42,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.border_color),
-            title: Text('About'),
+            title: Text('Catalog'),
             onTap: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>Catalog()))},
           ),
           ListTile(

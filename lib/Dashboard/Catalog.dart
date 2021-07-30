@@ -1,14 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:my_app/models/catCard.dart';
-
-
-
-
-
 
 class Catalog extends StatefulWidget {
   const Catalog({Key? key}) : super(key: key);
@@ -18,73 +13,74 @@ class Catalog extends StatefulWidget {
 }
 
 class _CatalogState extends State<Catalog> {
-
   late Future<CatCard> Cats;
   @override
   void initState() {
     super.initState();
-
   }
+
   Widget build(BuildContext context) {
     Cats = fetchPost();
     return Scaffold(
-     body: SafeArea(
-         child: FutureBuilder<CatCard>(
-           future: Cats,
-           builder: (context, abc) {
-             if (abc.hasData) {
-               return Text(abc.data!.caption);
-             } else if (abc.hasError) {
-               print(abc.error); return Text("${abc.error}");
-             }
+      body: SafeArea(
+        child: FutureBuilder<CatCard>(
+          future: Cats,
+          builder: (context, abc) {
+            if (abc.hasData) {
+              return Text(abc.data!.caption);
+            } else if (abc.hasError) {
+              print(abc.error);
+              return Text("${abc.error}");
+            }
 
-             // By default, it show a loading spinner.
-             return CircularProgressIndicator();
-           },
-         ),
-
-     ),
+            // By default, it show a loading spinner.
+            return CircularProgressIndicator();
+          },
+        ),
+      ),
     );
   }
 }
 
-
-
-
 Future<CatCard> fetchPost() async {
   final String apiKey = "e110c41ec6bc4586809e232e8f558a73";
-  final url = Uri.parse('https://api.blinksky.com/api/v1/catalog');
-  Map data = {
-    'service':
-     'apikey: $apiKey' ,
-  } ;
+  final data = jsonEncode({
+    "gift": {
+      "action": "order",
+      "apikey": "5c80278bbd1a46b991e671a4056ec609",
+      "sender": "Romario.",
+      "from": "8768682192",
+      "dest": "8763927054",
+      "code": "218",
+      "amount": 25.50,
+      "postal": "30005",
+      "msg": "Thanks for taking our test drive!",
+      "reference": "7563834856",
+      "handle_delivery": false
+    }
+  });
+  final response =
+      await http.post(Uri.parse('https://api.blinksky.com/api/v1/send'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: data);
 
-  HttpClient httpClient = new HttpClient();
-  HttpClientRequest request = await httpClient.postUrl(url);
-  request.headers.set('content-type', 'application/json');
-  request.add(utf8.encode(json.encode(data)));
-  HttpClientResponse response = await request.close();
   print(response.statusCode);
-  // todo - you should check the response.statusCode
-  String reply = await response.transform(utf8.decoder).join();
-  print('Response status: ${response.statusCode}');
-  httpClient.close();
+  print(response.body);
+  final body = json.decode(response.body);
 
-
-
-  print(response.statusCode);
+  print(body);
+  print('${response.body[12]}');
 
 
 
   if (response.statusCode == 200) {
     // If the server returns an OK response, then parse the JSON.
-    return CatCard.fromJson(json.decode('apikey'));
+    return CatCard.fromJson(body);
+
   } else {
-  // If the response was unexpected, throw an error.
-  throw Exception('Failed to load card');
+    // If the response was unexpected, throw an error.
+    throw Exception('Failed to load card');
   }
 }
-
-
-
-
