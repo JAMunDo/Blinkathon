@@ -37,6 +37,8 @@ dependencies:
   cloud_functions: ^1.0.3
   settings_ui: ^1.0.0
   http: ^0.13.3
+  json_serializable: ^4.1.0
+  _fe_analyzer_shared: ^22.0.0
 
 
 
@@ -44,6 +46,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
