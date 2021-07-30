@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../Payment.dart';
 import '../Setting/Settings.dart';
 class NavDrawer extends StatelessWidget {
   @override
@@ -20,7 +20,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.payments_sharp),
             title: Text('Payment'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment()))
+            },
           ),
           ListTile(
             leading: Icon(Icons.settings),
