@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/Dashboard/Payment.dart';
-
+import '../Payment.dart';
 import '../Setting/Settings.dart';
 class NavDrawer extends StatelessWidget {
   @override
@@ -23,7 +21,7 @@ class NavDrawer extends StatelessWidget {
             leading: Icon(Icons.payments_sharp),
             title: Text('Payment'),
             onTap: () => {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment()))
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment()))
             },
           ),
           ListTile(
@@ -41,9 +39,7 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-              onTap: () async => {
-    await FirebaseAuth.instance.signOut()
-             },
+            onTap: () => {Navigator.of(context).pop()},
           ),
         ],
       ),
