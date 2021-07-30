@@ -38,6 +38,7 @@ dependencies:
   firebase_database: ^6.0.0
   cloud_functions: ^1.1.2
   firebase_core_platform_interface: ^4.0.1
+  settings_ui: ^1.0.0
 
 
 

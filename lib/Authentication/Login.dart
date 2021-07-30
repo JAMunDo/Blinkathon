@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
             },
             child: Text.rich(
                 TextSpan(
-                  text: 'Don\'t have an account ',
+                  text: 'Don\'t have an account?',
                 children: [
                 TextSpan(
                   text: 'Signup',

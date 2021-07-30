@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Setting/Settings.dart';
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Settings()))
+          }
           ),
           ListTile(
             leading: Icon(Icons.border_color),
