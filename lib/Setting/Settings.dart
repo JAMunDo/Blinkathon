@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Setting/Billing.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import 'Account.dart';
@@ -48,7 +49,7 @@ class _SettingsState extends State<Settings>  {
             },),
             SettingsTile(title: 'Billing', leading: Icon(Icons.monetization_on),onPressed: (context) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => Account(),
+                builder: (_) => Billing(),
               ));
             },),
             SettingsTile(title: 'Contact Us', leading: Icon(Icons.contact_mail)),

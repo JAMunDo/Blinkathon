@@ -22,7 +22,7 @@ class _LandingState extends State<Landing> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.purple,
       ),
       body: Container(
         height: height,
