@@ -140,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Text('Forget password?',style: TextStyle(fontSize: 15.0),),
                     ElevatedButton(onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyApp()));
+                      signUp();
                     }, child: Text('Register'))
                   ],
                 ),
@@ -180,8 +180,7 @@ class _SignUpState extends State<SignUp> {
 
       );
       saveUserInfoToFirestore(userCredential.user!).then((value) {
-        userCredential.user!.updateDisplayName(
-            nameController.text.trim());
+        userCredential.user!.updateDisplayName(nameController.text);
 
 
         Route route = MaterialPageRoute(builder: (c) => Landing());

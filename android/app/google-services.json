@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "69027975470",
+    "project_id": "blinkx-73930",
+    "storage_bucket": "blinkx-73930.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69027975470:android:81fff15252d746c699eabf",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69027975470-d9t839n178om6vq43tg5vlsub55jnijf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf9Tji0h39S9u2Kp60dz664dhjR8eqc5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69027975470-d9t839n178om6vq43tg5vlsub55jnijf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
