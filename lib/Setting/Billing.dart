@@ -3,14 +3,14 @@ import 'package:my_app/Dashboard/Landing.dart';
 import 'package:my_app/widgets/nav-drawer.dart';
 
 import '../Setting/Settings.dart';
-class Account extends StatefulWidget {
-  const Account({Key? key}) : super(key: key);
+class Billing extends StatefulWidget {
+  const Billing({Key? key}) : super(key: key);
 
   @override
-  _AccountState createState() => _AccountState();
+  _BillingState createState() => _BillingState();
 }
 
-class _AccountState extends State<Account> {
+class _BillingState extends State<Billing> {
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
@@ -27,7 +27,7 @@ class _AccountState extends State<Account> {
             DecorationImage(
                 image: AssetImage('./lib/assets/backdrop.png'),
                 //scale: 1,
-               fit:BoxFit.fitHeight
+                fit:BoxFit.fitHeight
             )
         ),
         height:height,
@@ -51,13 +51,13 @@ class _AccountState extends State<Account> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:
-                Text('Account',style: TextStyle(fontSize: 36.0,fontWeight: FontWeight.bold, color: Colors.white),),
+                Text('Billing',style: TextStyle(fontSize: 36.0,fontWeight: FontWeight.bold, color: Colors.white),),
               ),
               SizedBox(height: height * 0.05,),
               Container(
-            child: Image(
-              image:AssetImage('./lib/assets/human.png'),
-            ),
+                child: Image(
+                  image:AssetImage('./lib/assets/human.png'),
+                ),
               ),
               SizedBox(height: height * 0.1,),
               Container(
