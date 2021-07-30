@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:my_app/models/catCard.dart';
 import 'package:my_app/widgets/nav-drawer.dart';
 
 class Landing extends StatefulWidget {
@@ -19,10 +23,11 @@ class _LandingState extends State<Landing> {
     check(_auth!);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    fetchPost();
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Container(
         height: height,
@@ -33,22 +38,28 @@ class _LandingState extends State<Landing> {
               SizedBox(
                 height: height * 0.05,
               ),
-              Text(
-                "Welcome Back",
-                style:
-                    TextStyle(fontSize: height * 0.03, fontWeight: FontWeight.w100),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Welcome Back",
+                  style:
+                      TextStyle(fontSize: height * 0.04, fontWeight: FontWeight.bold),
+                ),
               ),
-              Text(
-                _auth.displayName! ,
-                style:
-                    TextStyle(fontSize: height * 0.03, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _auth.displayName! ,
+                  style:
+                      TextStyle(fontSize: height * 0.03, fontWeight: FontWeight.bold),
+                ),
               ),
               SizedBox(
                 height: height * 0.05,
               ),
               Center(
                   child: Text(
-                "Balance:",
+                "Balance: 0.00"  ,
                 style: TextStyle(fontSize: height * 0.03),
               )),
               SizedBox(
@@ -93,7 +104,42 @@ class _LandingState extends State<Landing> {
       ),
     );
   }
+  Future<CatCard> fetchPost() async {
+    final String apiKey = "e110c41ec6bc4586809e232e8f558a73";
+    final data = jsonEncode({
+      "service": {
+        "action": "getbalance",
+        "apikey": apiKey
+      }
+    });
+    final response =
+    await http.post(Uri.parse('https://api.blinksky.com/api/v1/query'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: data);
+
+    print(response.statusCode);
+    print(response.body);
+    final body = json.decode(response.body);
+
+    print(body);
+    print('${response.body[12]}');
+
+
+
+    if (response.statusCode == 200) {
+      // If the server returns an OK response, then parse the JSON.
+      return CatCard.fromJson(body);
+
+    } else {
+      // If the response was unexpected, throw an error.
+      throw Exception('Failed to load card');
+    }
+  }
+
 }
+
 
 payCard() {
   return Card(

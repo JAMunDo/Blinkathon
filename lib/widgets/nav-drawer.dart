@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Dashboard/Catalog.dart';
+import 'package:my_app/Dashboard/Landing.dart';
 import 'package:my_app/Dashboard/Reload.dart';
 
 import '../Payment.dart';
@@ -19,6 +20,13 @@ class NavDrawer extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.green,
               ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () => {
+
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> Landing()))},
           ),
           ListTile(
             leading: Icon(Icons.payments_sharp),

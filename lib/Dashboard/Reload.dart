@@ -30,14 +30,23 @@ class _ReloadState extends State<Reload> {
         title: Text('Reload',style: TextStyle(fontSize: 26.0,fontWeight: FontWeight.bold, color: Colors.white),),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('./lib/assets/Pay.jpg'),
+            fit: BoxFit.fill
+
+          )
+        ),
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children:[
             SizedBox(height: height * 0.3,),
           Container(
+            color: Colors.white,
             width:width,
             child: TextField(controller: a,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter reload amount',
@@ -45,6 +54,9 @@ class _ReloadState extends State<Reload> {
             ),
           ),
           SizedBox(height: 20.0,),
+              ElevatedButton(onPressed: (){
+                fetchPost();
+              }, child: Text('Reload'))
         ])
         )
       )
