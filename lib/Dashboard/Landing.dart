@@ -76,17 +76,17 @@ class _LandingState extends State<Landing> {
                   )
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
-
-                  ),),
-                height: height * 0.335,
-
-              )
+              // Container(
+              //   decoration: BoxDecoration(
+              //     color: Colors.deepPurple,
+              //     borderRadius: BorderRadius.only(
+              //       topLeft: const Radius.circular(40.0),
+              //       topRight: const Radius.circular(40.0),
+              //
+              //     ),),
+              //   height: height * 0.335,
+              //
+              // )
             ],
           ),
         ),

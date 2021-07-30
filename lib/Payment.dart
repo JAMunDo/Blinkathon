@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Dashboard/Landing.dart';
 import 'package:my_app/widgets/nav-drawer.dart';
-import '../Setting/Settings.dart';
+
 class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);
 

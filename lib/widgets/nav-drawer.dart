@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Dashboard/Catalog.dart';
+
 import '../Payment.dart';
 import '../Setting/Settings.dart';
 class NavDrawer extends StatelessWidget {
@@ -34,7 +36,7 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('About'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>Catalog()))},
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
