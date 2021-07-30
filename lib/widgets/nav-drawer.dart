@@ -14,11 +14,15 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text(
-              'Side menu',
+              'Navigation',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.purpleAccent,
+              image: DecorationImage(
+                image: AssetImage("./lib/assets/Pay.jpg"),
+                    fit: BoxFit.cover
+              )
               ),
           ),
           ListTile(
@@ -36,7 +40,7 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.payments_sharp),
+            leading: Icon(Icons.money),
             title: Text('Reload'),
             onTap: () => {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Reload()))
