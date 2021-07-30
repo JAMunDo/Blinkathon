@@ -1,19 +1,23 @@
 # Blinkathon
 This is our teams entry into the Blinkathon 2021.
-# my_app
+# BlinkX
 
-A new Flutter project.
+Our app BlinkX allows customers to login , create an account and send users digital payments and redeem funds.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+If you want to create an account you can on our sign up page and then login with that account or you can use the already created credentials.
+creds:
+email: testt@test.com
+password: 654321
 
-A few resources to get you started if this is your first Flutter project:
+From there we have a side menu where you can visit various pages. 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#Landing Page
+The landing page demonstrates a preview of cards that the user can purchase.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> master
+#Payment Page
+Payment allows you to send a mastercard  directly to a users phone.
+ 
+#Redeem
+Redeem funds to account
