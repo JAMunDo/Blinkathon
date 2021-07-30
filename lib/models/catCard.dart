@@ -1,3 +1,5 @@
+
+
 class CatCard{
   late String caption;
   late String code;
@@ -26,5 +28,17 @@ class CatCard{
       min: json['min_range'],
       values: json ['value']
     );
+  }
+
+  Map <String , dynamic> toJson(){
+    return {
+      'caption' : caption,
+      'code': code,
+      'desc': desc,
+      'logo': logoUrl,
+      'max_range': max,
+      'min_range': min,
+      'value': values,
+    };
   }
 }
